@@ -24,11 +24,13 @@ class Firewall(abc.ABC):
 
 
 def get_firewall() -> Firewall:
-    if os.name == "nt":
+    if os.name == "posix":
+        from .impl.linux import LinuxFirewall
+
+        return LinuxFirewall()
+    elif os.name == "nt":
         from .impl.windows import WindowsFirewall
 
         return WindowsFirewall()
     else:
-        from .impl.test import TestFirewall
-
-        return TestFirewall()
+        raise NotImplementedError(f"Unsupported OS: {os.name}")

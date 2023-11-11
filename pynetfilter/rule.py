@@ -1,7 +1,7 @@
 import dataclasses
 import enum
 
-from py2firewall.address import (
+from pynetfilter.address import (
     AnyIp,
     AnyPort,
     IpSelector,
@@ -10,7 +10,7 @@ from py2firewall.address import (
     PortUnion,
     SinglePort,
 )
-from py2firewall.helper import get_ip_list
+from pynetfilter.helper import get_ip_list
 
 
 class Direction(str, enum.Enum):

@@ -5,8 +5,7 @@ import subprocess
 from dataclasses import dataclass
 from typing import List, NotRequired, TypedDict
 
-from py2firewall.address import IpSelector, PortSelector
-
+from ..address import IpSelector, PortSelector
 from ..firewall import Firewall
 from ..rule import Action, Direction, Protocol, Rule
 

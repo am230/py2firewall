@@ -4,7 +4,7 @@ with open("README.rst", mode="r", encoding="utf-8") as f:
     long_description = f.read()
 
 author = "am230"
-name = "py2firewall"
+name = "pynetfilter"
 py_modules = [name]
 
 setup(
