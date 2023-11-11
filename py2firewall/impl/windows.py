@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import abc
 import subprocess
-import winreg
 from dataclasses import dataclass
 from typing import List, NotRequired, TypedDict
 
@@ -10,6 +9,11 @@ from py2firewall.address import IpSelector, PortSelector
 
 from ..firewall import Firewall
 from ..rule import Action, Direction, Protocol, Rule
+
+try:
+    import winreg
+except ImportError:
+    winreg = None
 
 REGISTRY_KEY_FIREWALL = "SYSTEM\\CurrentControlSet\\Services\\SharedAccess\\Parameters\\FirewallPolicy\\FirewallRules"
 
@@ -38,6 +42,8 @@ class Registry(abc.ABC):
 
 class WindowsRegistry(Registry):
     def get_values(self, key: str) -> List[str]:
+        if winreg is None:
+            raise RuntimeError("winreg module not found")
         _key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, key)
         values = []
         i = 0
