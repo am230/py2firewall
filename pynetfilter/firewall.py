@@ -5,7 +5,7 @@ from typing import List
 from .rule import Rule
 
 
-class Firewall(abc.ABC):
+class NetFilter(abc.ABC):
     @abc.abstractmethod
     def add_rule(self, rule: Rule):
         pass
@@ -23,7 +23,7 @@ class Firewall(abc.ABC):
         pass
 
 
-def get_firewall() -> Firewall:
+def get_netfilter() -> NetFilter:
     if os.name == "posix":
         from .impl.linux import LinuxFirewall
 

@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import List, NotRequired, TypedDict
 
 from ..address import IpSelector, PortSelector
-from ..firewall import Firewall
+from ..firewall import NetFilter
 from ..rule import Action, Direction, Protocol, Rule
 
 try:
@@ -55,7 +55,7 @@ class WindowsRegistry(Registry):
         return values
 
 
-class WindowsFirewall(Firewall):
+class WindowsFirewall(NetFilter):
     def __init__(
         self,
         terminal: Terminal = SubprocessTerminal(),
